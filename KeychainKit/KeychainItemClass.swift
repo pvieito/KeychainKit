@@ -13,6 +13,15 @@ extension Keychain.Item {
     public enum ItemClass: RawRepresentable, CustomStringConvertible {
         case genericPassword
         case internetPassword
+        case key
+        case certificate
+        case identity
+        
+        static let all: [ItemClass] = [.genericPassword,
+                                       .internetPassword,
+                                       .key,
+                                       .certificate,
+                                       .identity]
         
         public var rawValue: CFString {
             switch self {
@@ -20,6 +29,12 @@ extension Keychain.Item {
                 return kSecClassGenericPassword
             case .internetPassword:
                 return kSecClassInternetPassword
+            case .key:
+                return kSecClassKey
+            case .certificate:
+                return kSecClassCertificate
+            case .identity:
+                return kSecClassIdentity
             }
         }
         
@@ -29,6 +44,12 @@ extension Keychain.Item {
                 self = .genericPassword
             case kSecClassInternetPassword:
                 self = .internetPassword
+            case kSecClassKey:
+                self = .key
+            case kSecClassCertificate:
+                self = .certificate
+            case kSecClassIdentity:
+                self = .identity
             default:
                 return nil
             }
@@ -40,6 +61,12 @@ extension Keychain.Item {
                 return "Generic Password"
             case .internetPassword:
                 return "Internet Password"
+            case .key:
+                return "Key"
+            case .certificate:
+                return "Certificate"
+            case .identity:
+                return "Identity"
             }
         }
     }

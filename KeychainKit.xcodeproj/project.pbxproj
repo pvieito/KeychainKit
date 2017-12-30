@@ -7,12 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0178331FF1D8F90059D7F8 /* KeychainItem+LoggerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0178321FF1D8F90059D7F8 /* KeychainItem+LoggerKit.swift */; };
+		AA01783E1FF1D91E0059D7F8 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA01783A1FF1D9160059D7F8 /* LoggerKit.framework */; };
+		AA01784B1FF1DA7F0059D7F8 /* FoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0178461FF1DA7B0059D7F8 /* FoundationKit.framework */; };
+		AA01788A1FF2D4940059D7F8 /* Keychain+SecureEnclave.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0178891FF2D4940059D7F8 /* Keychain+SecureEnclave.swift */; };
 		AA2D69261F4DE1A000582187 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D69251F4DE0D500582187 /* Keychain.swift */; };
 		AA2D69271F4DE1A300582187 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D69231F4DE0D400582187 /* KeychainItem.swift */; };
 		AA2D69281F4DE1A500582187 /* KeychainItemClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D69241F4DE0D400582187 /* KeychainItemClass.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AA0178391FF1D9160059D7F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0178341FF1D9160059D7F8 /* LoggerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AABBD9A41E5761BD00AE5B46;
+			remoteInfo = LoggerKit;
+		};
+		AA01783B1FF1D9160059D7F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0178341FF1D9160059D7F8 /* LoggerKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AA912BE01EE96C56002DD639;
+			remoteInfo = LoggerKitWatch;
+		};
+		AA0178451FF1DA7B0059D7F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AA2563CF1E57639E0037CBED;
+			remoteInfo = FoundationKit;
+		};
+		AA0178471FF1DA7B0059D7F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AA912C1A1EE96CF2002DD639;
+			remoteInfo = FoundationKitWatch;
+		};
+		AA0178491FF1DA7B0059D7F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AAD31D251F883C8800C056DD;
+			remoteInfo = FoundationKitTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		AA0178321FF1D8F90059D7F8 /* KeychainItem+LoggerKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainItem+LoggerKit.swift"; sourceTree = "<group>"; };
+		AA0178341FF1D9160059D7F8 /* LoggerKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LoggerKit.xcodeproj; path = ../LoggerKit/LoggerKit.xcodeproj; sourceTree = "<group>"; };
+		AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FoundationKit.xcodeproj; path = ../FoundationKit/FoundationKit.xcodeproj; sourceTree = "<group>"; };
+		AA0178891FF2D4940059D7F8 /* Keychain+SecureEnclave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keychain+SecureEnclave.swift"; sourceTree = "<group>"; };
 		AA2D69181F4DE0AB00582187 /* KeychainKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeychainKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2D691C1F4DE0AB00582187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2D69231F4DE0D400582187 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
@@ -25,17 +71,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA01784B1FF1DA7F0059D7F8 /* FoundationKit.framework in Frameworks */,
+				AA01783E1FF1D91E0059D7F8 /* LoggerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA0178351FF1D9160059D7F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA01783A1FF1D9160059D7F8 /* LoggerKit.framework */,
+				AA01783C1FF1D9160059D7F8 /* LoggerKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA01783D1FF1D91E0059D7F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA0178401FF1DA7A0059D7F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA0178461FF1DA7B0059D7F8 /* FoundationKit.framework */,
+				AA0178481FF1DA7B0059D7F8 /* FoundationKit.framework */,
+				AA01784A1FF1DA7B0059D7F8 /* FoundationKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AA2D690E1F4DE0AB00582187 = {
 			isa = PBXGroup;
 			children = (
+				AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */,
+				AA0178341FF1D9160059D7F8 /* LoggerKit.xcodeproj */,
 				AA2D691A1F4DE0AB00582187 /* KeychainKit */,
 				AA2D69191F4DE0AB00582187 /* Products */,
+				AA01783D1FF1D91E0059D7F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,7 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				AA2D69251F4DE0D500582187 /* Keychain.swift */,
+				AA0178891FF2D4940059D7F8 /* Keychain+SecureEnclave.swift */,
 				AA2D69231F4DE0D400582187 /* KeychainItem.swift */,
+				AA0178321FF1D8F90059D7F8 /* KeychainItem+LoggerKit.swift */,
 				AA2D69241F4DE0D400582187 /* KeychainItemClass.swift */,
 				AA2D691C1F4DE0AB00582187 /* Info.plist */,
 			);
@@ -115,12 +194,60 @@
 			mainGroup = AA2D690E1F4DE0AB00582187;
 			productRefGroup = AA2D69191F4DE0AB00582187 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AA0178401FF1DA7A0059D7F8 /* Products */;
+					ProjectRef = AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */;
+				},
+				{
+					ProductGroup = AA0178351FF1D9160059D7F8 /* Products */;
+					ProjectRef = AA0178341FF1D9160059D7F8 /* LoggerKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AA2D69171F4DE0AB00582187 /* KeychainKit */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AA01783A1FF1D9160059D7F8 /* LoggerKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LoggerKit.framework;
+			remoteRef = AA0178391FF1D9160059D7F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA01783C1FF1D9160059D7F8 /* LoggerKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LoggerKit.framework;
+			remoteRef = AA01783B1FF1D9160059D7F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA0178461FF1DA7B0059D7F8 /* FoundationKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FoundationKit.framework;
+			remoteRef = AA0178451FF1DA7B0059D7F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA0178481FF1DA7B0059D7F8 /* FoundationKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FoundationKit.framework;
+			remoteRef = AA0178471FF1DA7B0059D7F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA01784A1FF1DA7B0059D7F8 /* FoundationKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FoundationKitTests.xctest;
+			remoteRef = AA0178491FF1DA7B0059D7F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AA2D69161F4DE0AB00582187 /* Resources */ = {
@@ -139,7 +266,9 @@
 			files = (
 				AA2D69271F4DE1A300582187 /* KeychainItem.swift in Sources */,
 				AA2D69261F4DE1A000582187 /* Keychain.swift in Sources */,
+				AA0178331FF1D8F90059D7F8 /* KeychainItem+LoggerKit.swift in Sources */,
 				AA2D69281F4DE1A500582187 /* KeychainItemClass.swift in Sources */,
+				AA01788A1FF2D4940059D7F8 /* Keychain+SecureEnclave.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +390,7 @@
 		AA2D69211F4DE0AB00582187 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -285,6 +415,7 @@
 		AA2D69221F4DE0AB00582187 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;

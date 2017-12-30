@@ -11,57 +11,123 @@ import Security
 
 public class Keychain {
     
+    enum KeychainError: LocalizedError {
+        case keychainError(OSStatus)
+        case alreadyExistingLabel(String)
+        
+        var errorDescription: String? {
+            switch self {
+            case .keychainError(let errorCode):
+                return "Keychain error code \(errorCode): \(SecCopyErrorMessageString(errorCode, nil) ?? "Unknown error." as CFString)"
+            case .alreadyExistingLabel(let label):
+                return "Item with label “\(label)” already exists in the Keychain."
+            }
+        }
+    }
+    
     public static var system = Keychain()
+    
+    internal func checkKeychainResult(code: OSStatus) throws {
+        
+        guard code == noErr else {
+            throw KeychainError.keychainError(code)
+        }
+    }
+    
+    public func removeItem(query: [CFString: Any]) throws {
+
+        let resultCode = SecItemDelete(query as CFDictionary)
+        
+        try checkKeychainResult(code: resultCode)
+    }
     
     public func loadItems(query: [CFString: Any]) throws -> [Item] {
         
         var result: AnyObject?
         
-        let lastResultCode = withUnsafeMutablePointer(to: &result) {
+        let resultCode = withUnsafeMutablePointer(to: &result) {
             SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))
         }
         
-        guard lastResultCode == noErr else {
-            throw NSError(domain: "com.apple.security", code: Int(lastResultCode), userInfo: nil)
-        }
+        try checkKeychainResult(code: resultCode)
         
         guard let itemsArray = result as? [[String: Any]] else {
-            throw NSError(domain: "com.apple.security", code: -1, userInfo: nil)
+            throw KeychainError.keychainError(-55)
         }
         
-        return itemsArray.map { Item(attributes: $0) }
+        return itemsArray.map { Item(attributes: $0 as [CFString: Any]) }
     }
     
-    public func loadItems(accessGroup: String, service: String, synchronizable: Bool = true) throws -> [Item] {
+    public func loadItems(label: String? = nil,
+                          accessGroup: String? = nil,
+                          service: String? = nil,
+                          synchronizable: Bool? = nil,
+                          tokenID: String? = nil) throws -> [Item] {
+     
+        var items: [Item] = try self.queryItems()
         
-        let query: [CFString: Any] = [
-            kSecClass: Item.ItemClass.genericPassword.rawValue,
-            kSecAttrAccessGroup: accessGroup as CFString,
-            kSecAttrService: service as CFString,
-            kSecAttrSynchronizable: (synchronizable ? kCFBooleanTrue : kCFBooleanFalse) as Any ,
+        if let label = label {
+            items = items.filter({ $0.label == label })
+        }
+        
+        if let service = service {
+            items = items.filter({ $0.service == service })
+        }
+        
+        if let accessGroup = accessGroup {
+            items = items.filter({ $0.accessGroup == accessGroup })
+        }
+        
+        if let synchronizable = synchronizable {
+            items = items.filter({ $0.synchronizable == synchronizable })
+        }
+        
+        if let tokenID = tokenID {
+            items = items.filter({ $0.tokenID == tokenID })
+        }
+        
+        return items
+    }
+
+    internal func queryItems(label: String? = nil, accessGroup: String? = nil, service: String? = nil, synchronizable: Bool? = nil) throws -> [Item] {
+        
+        var query: [CFString: Any] = [
             kSecReturnData: kCFBooleanTrue,
             kSecReturnAttributes: kCFBooleanTrue,
             kSecReturnRef: kCFBooleanTrue,
             kSecMatchLimit: kSecMatchLimitAll
         ]
         
-        return try self.loadItems(query: query)
-    }
-    
-    public func loadSynchronizableItems() throws -> [Item] {
+        if let label = label {
+            query[kSecAttrLabel] = label
+        }
         
-        let synchronizableQuery: [CFString: Any] = [
-            kSecAttrSynchronizable: kCFBooleanTrue,
-            kSecReturnData: kCFBooleanTrue,
-            kSecReturnAttributes: kCFBooleanTrue,
-            kSecReturnRef: kCFBooleanTrue,
-            kSecMatchLimit: kSecMatchLimitAll
-        ]
+        if let service = service {
+            query[kSecAttrService] = service
+        }
         
-        let genericItems = try self.loadItems(query:
-            synchronizableQuery.merging([kSecClass: Item.ItemClass.genericPassword.rawValue as Any], uniquingKeysWith: { $1 }))
-        let internetItems = try self.loadItems(query:
-            synchronizableQuery.merging([kSecClass: Item.ItemClass.internetPassword.rawValue as Any], uniquingKeysWith: { $1 }))
-        return genericItems + internetItems
+        if let accessGroup = accessGroup {
+            query[kSecAttrAccessGroup] = accessGroup
+        }
+        
+        if let synchronizable = synchronizable {
+            query[kSecAttrSynchronizable] = synchronizable ? kCFBooleanTrue : kCFBooleanFalse
+        }
+        else {
+            query[kSecAttrSynchronizable] = kSecAttrSynchronizableAny
+        }
+        
+        let avaliableClasses: [Item.ItemClass] = [.genericPassword, .internetPassword, .key]
+        var items: [Item] = []
+        
+        for itemClass in avaliableClasses {
+            query[kSecClass] = itemClass.rawValue
+            
+            if let classItems = try? self.loadItems(query: query) {
+                items.append(contentsOf: classItems)
+            }
+        }
+        
+        return items
     }
 }

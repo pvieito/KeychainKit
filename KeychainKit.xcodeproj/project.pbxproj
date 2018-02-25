@@ -14,6 +14,11 @@
 		AA2D69261F4DE1A000582187 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D69251F4DE0D500582187 /* Keychain.swift */; };
 		AA2D69271F4DE1A300582187 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D69231F4DE0D400582187 /* KeychainItem.swift */; };
 		AA2D69281F4DE1A500582187 /* KeychainItemClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2D69241F4DE0D400582187 /* KeychainItemClass.swift */; };
+		AA55B69A204367DD00BF07E0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B699204367DD00BF07E0 /* main.swift */; };
+		AA55B6B62043690000BF07E0 /* KeychainKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2D69181F4DE0AB00582187 /* KeychainKit.framework */; };
+		AA55B6B72043690700BF07E0 /* FoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0178461FF1DA7B0059D7F8 /* FoundationKit.framework */; };
+		AA55B6B82043690700BF07E0 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA01783A1FF1D9160059D7F8 /* LoggerKit.framework */; };
+		AA55B6BD2043695D00BF07E0 /* CommandLineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA55B6B5204368ED00BF07E0 /* CommandLineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +57,26 @@
 			remoteGlobalIDString = AAD31D251F883C8800C056DD;
 			remoteInfo = FoundationKitTests;
 		};
+		AA55B6B4204368ED00BF07E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA55B6B0204368ED00BF07E0 /* CommandLineKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D06884319674D7D00BBFAAC;
+			remoteInfo = CommandLineKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA55B695204367DD00BF07E0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AA0178321FF1D8F90059D7F8 /* KeychainItem+LoggerKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainItem+LoggerKit.swift"; sourceTree = "<group>"; };
@@ -64,6 +88,11 @@
 		AA2D69231F4DE0D400582187 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		AA2D69241F4DE0D400582187 /* KeychainItemClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemClass.swift; sourceTree = "<group>"; };
 		AA2D69251F4DE0D500582187 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		AA55B697204367DD00BF07E0 /* KeychainTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KeychainTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA55B699204367DD00BF07E0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AA55B6A52043680F00BF07E0 /* KeychainTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeychainTool.entitlements; sourceTree = "<group>"; };
+		AA55B6AB2043680F00BF07E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA55B6B0204368ED00BF07E0 /* CommandLineKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommandLineKit.xcodeproj; path = ../CommandLineKit/CommandLineKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +102,17 @@
 			files = (
 				AA01784B1FF1DA7F0059D7F8 /* FoundationKit.framework in Frameworks */,
 				AA01783E1FF1D91E0059D7F8 /* LoggerKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA55B694204367DD00BF07E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA55B6BD2043695D00BF07E0 /* CommandLineKit.framework in Frameworks */,
+				AA55B6B72043690700BF07E0 /* FoundationKit.framework in Frameworks */,
+				AA55B6B82043690700BF07E0 /* LoggerKit.framework in Frameworks */,
+				AA55B6B62043690000BF07E0 /* KeychainKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,9 +148,11 @@
 		AA2D690E1F4DE0AB00582187 = {
 			isa = PBXGroup;
 			children = (
+				AA55B6B0204368ED00BF07E0 /* CommandLineKit.xcodeproj */,
 				AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */,
 				AA0178341FF1D9160059D7F8 /* LoggerKit.xcodeproj */,
 				AA2D691A1F4DE0AB00582187 /* KeychainKit */,
+				AA55B698204367DD00BF07E0 /* KeychainTool */,
 				AA2D69191F4DE0AB00582187 /* Products */,
 				AA01783D1FF1D91E0059D7F8 /* Frameworks */,
 			);
@@ -120,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2D69181F4DE0AB00582187 /* KeychainKit.framework */,
+				AA55B697204367DD00BF07E0 /* KeychainTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +178,24 @@
 				AA2D691C1F4DE0AB00582187 /* Info.plist */,
 			);
 			path = KeychainKit;
+			sourceTree = "<group>";
+		};
+		AA55B698204367DD00BF07E0 /* KeychainTool */ = {
+			isa = PBXGroup;
+			children = (
+				AA55B699204367DD00BF07E0 /* main.swift */,
+				AA55B6AB2043680F00BF07E0 /* Info.plist */,
+				AA55B6A52043680F00BF07E0 /* KeychainTool.entitlements */,
+			);
+			path = KeychainTool;
+			sourceTree = "<group>";
+		};
+		AA55B6B1204368ED00BF07E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA55B6B5204368ED00BF07E0 /* CommandLineKit.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,18 +229,40 @@
 			productReference = AA2D69181F4DE0AB00582187 /* KeychainKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		AA55B696204367DD00BF07E0 /* KeychainTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA55B6A2204367DD00BF07E0 /* Build configuration list for PBXNativeTarget "KeychainTool" */;
+			buildPhases = (
+				AA55B693204367DD00BF07E0 /* Sources */,
+				AA55B694204367DD00BF07E0 /* Frameworks */,
+				AA55B695204367DD00BF07E0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeychainTool;
+			productName = KeychainTool;
+			productReference = AA55B697204367DD00BF07E0 /* KeychainTool */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		AA2D690F1F4DE0AB00582187 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Pedro José Pereira Vieito";
 				TargetAttributes = {
 					AA2D69171F4DE0AB00582187 = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					AA55B696204367DD00BF07E0 = {
+						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -196,6 +279,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = AA55B6B1204368ED00BF07E0 /* Products */;
+					ProjectRef = AA55B6B0204368ED00BF07E0 /* CommandLineKit.xcodeproj */;
+				},
+				{
 					ProductGroup = AA0178401FF1DA7A0059D7F8 /* Products */;
 					ProjectRef = AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */;
 				},
@@ -207,6 +294,7 @@
 			projectRoot = "";
 			targets = (
 				AA2D69171F4DE0AB00582187 /* KeychainKit */,
+				AA55B696204367DD00BF07E0 /* KeychainTool */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +335,13 @@
 			remoteRef = AA0178491FF1DA7B0059D7F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		AA55B6B5204368ED00BF07E0 /* CommandLineKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CommandLineKit.framework;
+			remoteRef = AA55B6B4204368ED00BF07E0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -269,6 +364,14 @@
 				AA0178331FF1D8F90059D7F8 /* KeychainItem+LoggerKit.swift in Sources */,
 				AA2D69281F4DE1A500582187 /* KeychainItemClass.swift in Sources */,
 				AA01788A1FF2D4940059D7F8 /* Keychain+SecureEnclave.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA55B693204367DD00BF07E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA55B69A204367DD00BF07E0 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +539,38 @@
 			};
 			name = Release;
 		};
+		AA55B69B204367DD00BF07E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = T7MC635YG5;
+				INFOPLIST_FILE = KeychainTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pvieito.KeychainTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		AA55B69C204367DD00BF07E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = T7MC635YG5;
+				INFOPLIST_FILE = KeychainTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pvieito.KeychainTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -453,6 +588,15 @@
 			buildConfigurations = (
 				AA2D69211F4DE0AB00582187 /* Debug */,
 				AA2D69221F4DE0AB00582187 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA55B6A2204367DD00BF07E0 /* Build configuration list for PBXNativeTarget "KeychainTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA55B69B204367DD00BF07E0 /* Debug */,
+				AA55B69C204367DD00BF07E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

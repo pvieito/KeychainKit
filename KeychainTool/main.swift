@@ -34,7 +34,7 @@ catch {
 
 if helpOption.value {
     cli.printUsage()
-    exit(-1)
+    exit(0)
 }
 
 Logger.logMode = .commandLine
@@ -45,13 +45,10 @@ let authenticationPolicy = LAPolicy.deviceOwnerAuthentication
 
 let semaphore = DispatchSemaphore(value: 0)
 authenticationContext.evaluatePolicy(authenticationPolicy, localizedReason: ProcessInfo().processName) { (granted, error) in
-    
     if let error = error {
-        Logger.log(error: error)
-        exit(-1)
+        Logger.log(fatalError: error)
     }
-    
-    if granted {
+    else if granted {
         do {
             let keychainItems = try Keychain.system.loadItems(label: labelOption.value, accessGroup: accessGroupOption.value, service: serviceOption.value, synchronizable: syncOption.value ? true : nil, tokenID: tokenOption.value)
             
@@ -62,10 +59,9 @@ authenticationContext.evaluatePolicy(authenticationPolicy, localizedReason: Proc
             }
         }
         catch {
-            Logger.log(error: error)
+            Logger.log(fatalError: error)
         }
     }
     semaphore.signal()
-    
 }
 semaphore.wait()

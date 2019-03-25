@@ -64,6 +64,13 @@
 			remoteGlobalIDString = 5D06884319674D7D00BBFAAC;
 			remoteInfo = CommandLineKit;
 		};
+		AA804C9822457D5B0006A522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA55B6B0204368ED00BF07E0 /* CommandLineKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AABB3B53220FB42A00DEE6F4;
+			remoteInfo = CommandLineKitTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -93,6 +100,7 @@
 		AA55B6A52043680F00BF07E0 /* KeychainTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeychainTool.entitlements; sourceTree = "<group>"; };
 		AA55B6AB2043680F00BF07E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA55B6B0204368ED00BF07E0 /* CommandLineKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommandLineKit.xcodeproj; path = ../CommandLineKit/CommandLineKit.xcodeproj; sourceTree = "<group>"; };
+		AA804C9522457D5A0006A522 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,7 @@
 				AA55B6B0204368ED00BF07E0 /* CommandLineKit.xcodeproj */,
 				AA01783F1FF1DA7A0059D7F8 /* FoundationKit.xcodeproj */,
 				AA0178341FF1D9160059D7F8 /* LoggerKit.xcodeproj */,
+				AA804C9522457D5A0006A522 /* Package.swift */,
 				AA2D691A1F4DE0AB00582187 /* KeychainKit */,
 				AA55B698204367DD00BF07E0 /* KeychainTool */,
 				AA2D69191F4DE0AB00582187 /* Products */,
@@ -194,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				AA55B6B5204368ED00BF07E0 /* CommandLineKit.framework */,
+				AA804C9922457D5B0006A522 /* CommandLineKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,12 +268,12 @@
 				TargetAttributes = {
 					AA2D69171F4DE0AB00582187 = {
 						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					AA55B696204367DD00BF07E0 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -274,6 +284,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = AA2D690E1F4DE0AB00582187;
 			productRefGroup = AA2D69191F4DE0AB00582187 /* Products */;
@@ -341,6 +352,13 @@
 			fileType = wrapper.framework;
 			path = CommandLineKit.framework;
 			remoteRef = AA55B6B4204368ED00BF07E0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AA804C9922457D5B0006A522 /* CommandLineKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CommandLineKitTests.xctest;
+			remoteRef = AA804C9822457D5B0006A522 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -516,7 +534,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -540,7 +558,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pvieito.KeychainKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -556,7 +574,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pvieito.KeychainTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -572,7 +590,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pvieito.KeychainTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

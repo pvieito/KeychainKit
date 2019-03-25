@@ -72,8 +72,8 @@ extension Keychain {
         
         var secureEnclaveQuery: [CFString: Any] = [
             kSecClass: kSecClassKey,
-            kSecReturnRef: kCFBooleanTrue,
-            kSecReturnAttributes: kCFBooleanTrue,
+            kSecReturnRef: kCFBooleanTrue as Any,
+            kSecReturnAttributes: kCFBooleanTrue as Any,
             kSecAttrTokenID: kSecAttrTokenIDSecureEnclave,
             kSecMatchLimit: kSecMatchLimitAll
         ]

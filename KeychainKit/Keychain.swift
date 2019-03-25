@@ -92,9 +92,9 @@ public class Keychain {
     internal func queryItems(label: String? = nil, accessGroup: String? = nil, service: String? = nil, synchronizable: Bool? = nil) throws -> [Item] {
         
         var query: [CFString: Any] = [
-            kSecReturnData: kCFBooleanTrue,
-            kSecReturnAttributes: kCFBooleanTrue,
-            kSecReturnRef: kCFBooleanTrue,
+            kSecReturnData: kCFBooleanTrue as Any,
+            kSecReturnAttributes: kCFBooleanTrue as Any,
+            kSecReturnRef: kCFBooleanTrue as Any,
             kSecMatchLimit: kSecMatchLimitAll
         ]
         

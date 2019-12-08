@@ -10,9 +10,7 @@ import Foundation
 import Security
 
 extension Keychain {
-    
     public struct Item {
-        
         public var itemClass: ItemClass {
             guard let classString = attributes[kSecClass] as? String else {
                 return .genericPassword
@@ -115,7 +113,6 @@ extension Keychain {
 }
 
 extension Keychain.Item : CustomStringConvertible {
-    
     public var description: String {
         switch self.itemClass {
         case .genericPassword:

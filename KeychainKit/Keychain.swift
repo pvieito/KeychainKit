@@ -10,7 +10,6 @@ import Foundation
 import Security
 
 public class Keychain {
-    
     enum KeychainError: LocalizedError {
         case keychainError(OSStatus)
         case alreadyExistingLabel(String)
@@ -28,21 +27,17 @@ public class Keychain {
     public static var system = Keychain()
     
     internal func checkKeychainResult(code: OSStatus) throws {
-        
         guard code == noErr else {
             throw KeychainError.keychainError(code)
         }
     }
     
     public func removeItem(query: [CFString: Any]) throws {
-
         let resultCode = SecItemDelete(query as CFDictionary)
-        
         try checkKeychainResult(code: resultCode)
     }
     
     public func loadItems(query: [CFString: Any]) throws -> [Item] {
-        
         var result: AnyObject?
         
         let resultCode = withUnsafeMutablePointer(to: &result) {
@@ -50,7 +45,6 @@ public class Keychain {
         }
         
         try checkKeychainResult(code: resultCode)
-        
         guard let itemsArray = result as? [[String: Any]] else {
             throw KeychainError.keychainError(-55)
         }
@@ -58,12 +52,12 @@ public class Keychain {
         return itemsArray.map { Item(attributes: $0 as [CFString: Any]) }
     }
     
-    public func loadItems(label: String? = nil,
-                          accessGroup: String? = nil,
-                          service: String? = nil,
-                          synchronizable: Bool? = nil,
-                          tokenID: String? = nil) throws -> [Item] {
-     
+    public func loadItems(
+        label: String? = nil,
+        accessGroup: String? = nil,
+        service: String? = nil,
+        synchronizable: Bool? = nil,
+        tokenID: String? = nil) throws -> [Item] {
         var items: [Item] = try self.queryItems()
         
         if let label = label {
@@ -88,9 +82,12 @@ public class Keychain {
         
         return items
     }
-
-    internal func queryItems(label: String? = nil, accessGroup: String? = nil, service: String? = nil, synchronizable: Bool? = nil) throws -> [Item] {
-        
+    
+    internal func queryItems(
+        label: String? = nil,
+        accessGroup: String? = nil,
+        service: String? = nil,
+        synchronizable: Bool? = nil) throws -> [Item] {
         var query: [CFString: Any] = [
             kSecReturnData: kCFBooleanTrue as Any,
             kSecReturnAttributes: kCFBooleanTrue as Any,

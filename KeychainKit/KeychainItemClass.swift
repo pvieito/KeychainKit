@@ -17,11 +17,12 @@ extension Keychain.Item {
         case certificate
         case identity
         
-        static let all: [ItemClass] = [.genericPassword,
-                                       .internetPassword,
-                                       .key,
-                                       .certificate,
-                                       .identity]
+        static let all: [ItemClass] = [
+            .genericPassword,
+            .internetPassword,
+            .key,
+            .certificate,
+            .identity]
         
         public var rawValue: CFString {
             switch self {

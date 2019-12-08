@@ -10,17 +10,17 @@ import Foundation
 
 @available(macOS 10.12.1, *)
 extension Keychain {
-    
     public func createSecureEnclaveKeyPair(label: String, accessGroup: String? = nil) throws -> Item {
-        
         let duplicatedItems = (try? loadSecureEnclaveKeys(label: label)) ?? []
         
         guard duplicatedItems.isEmpty else {
             throw KeychainError.alreadyExistingLabel(label)
         }
         
-        let publicAccessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault, kSecAttrAccessibleAlwaysThisDeviceOnly, [], nil)!
-        let privateAccessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [.userPresence, .privateKeyUsage], nil)!
+        let publicAccessControl = SecAccessControlCreateWithFlags(
+            kCFAllocatorDefault, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [], nil)!
+        let privateAccessControl = SecAccessControlCreateWithFlags(
+            kCFAllocatorDefault, kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly, [.userPresence, .privateKeyUsage], nil)!
         
         var keyPairQuery: [CFString: Any] = [
             kSecAttrTokenID: kSecAttrTokenIDSecureEnclave,
@@ -58,18 +58,17 @@ extension Keychain {
     }
     
     public func removeSecureEnclaveKeys(label: String, accessGroup: String) throws {
-        
-        let secureEnclaveQuery: [CFString: Any] = [kSecClass: kSecClassKey,
-                                                   kSecAttrTokenID: kSecAttrTokenIDSecureEnclave,
-                                                   kSecAttrAccessGroup: accessGroup,
-                                                   kSecAttrLabel: label]
+        let secureEnclaveQuery: [CFString: Any] = [
+            kSecClass: kSecClassKey,
+            kSecAttrTokenID: kSecAttrTokenIDSecureEnclave,
+            kSecAttrAccessGroup: accessGroup,
+            kSecAttrLabel: label]
         
         try removeItem(query: secureEnclaveQuery)
         
     }
     
     public func loadSecureEnclaveKeys(label: String? = nil, accessGroup: String? = nil) throws -> [Item] {
-        
         var secureEnclaveQuery: [CFString: Any] = [
             kSecClass: kSecClassKey,
             kSecReturnRef: kCFBooleanTrue as Any,

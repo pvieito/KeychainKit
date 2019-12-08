@@ -48,15 +48,14 @@ extension Keychain.Item {
         if let account = self.account {
             Logger.log(info: "Account: \(account)")
         }
+
         if Logger.logLevel >= .verbose, let keyData = self.data {
             if let keyString = String(data: keyData, encoding: .utf8) {
                 Logger.log(verbose: "Key: “\(keyString)”")
             }
             else {
-                Logger.log(verbose: "Key: \(keyData.hexString)")
+                Logger.log(verbose: "Key: 0x\(keyData.hexString)")
             }
         }
-        
-        Logger.log(debug: "Attributes:\n\(attributes)")
     }
 }

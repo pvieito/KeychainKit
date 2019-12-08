@@ -1,11 +1,11 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
 let package = Package(
     name: "KeychainKit",
     platforms: [
-        .macOS(.v10_12)
+        .macOS(.v10_15)
     ],
     products: [
         .executable(
@@ -20,12 +20,14 @@ let package = Package(
     dependencies: [
         .package(path: "../FoundationKit"),
         .package(path: "../CommandLineKit"),
-        .package(path: "../LoggerKit")
+        .package(path: "../LoggerKit"),
+        .package(path: "../AuthenticationKit"),
+        .package(path: "../CodeSignKit")
     ],
     targets: [
         .target(
             name: "KeychainTool",
-            dependencies: ["LoggerKit", "CommandLineKit", "FoundationKit", "KeychainKit"],
+            dependencies: ["LoggerKit", "CommandLineKit", "FoundationKit", "KeychainKit", "AuthenticationKit", "CodeSignKit"],
             path: "KeychainTool"
         ),
         .target(

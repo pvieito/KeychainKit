@@ -8,10 +8,11 @@
 
 import Foundation
 import FoundationKit
-import LocalAuthentication
 import LoggerKit
 import CommandLineKit
 import KeychainKit
+import AuthenticationKit
+import CodeSignKit
 
 let syncOption = BoolOption(shortFlag: "s", longFlag: "sync", helpMessage: "Show only synchronizable items.")
 let labelOption = StringOption(shortFlag: "l", longFlag: "label", helpMessage: "Label.")
@@ -40,28 +41,25 @@ if helpOption.value {
 Logger.logMode = .commandLine
 Logger.logLevel = verboseOption.value ? .debug : .info
 
-let authenticationContext = LAContext()
-let authenticationPolicy = LAPolicy.deviceOwnerAuthentication
-
-let semaphore = DispatchSemaphore(value: 0)
-authenticationContext.evaluatePolicy(authenticationPolicy, localizedReason: ProcessInfo().processName) { (granted, error) in
-    if let error = error {
-        Logger.log(fatalError: error)
+do {
+    try CodeSign.signMainExecutableOnceAndRun()
+    
+    let authenticator = DeviceOwnerAuthenticator()
+    try authenticator.grant()
+    
+    let keychainItems = try Keychain.system.loadItems(
+        label: labelOption.value,
+        accessGroup: accessGroupOption.value,
+        service: serviceOption.value,
+        synchronizable: syncOption.value ? true : nil,
+        tokenID: tokenOption.value)
+    
+    Logger.log(important: "Keychain Items Matched: \(keychainItems.count)")
+    
+    for keychainItem in keychainItems {
+        keychainItem.printDetails()
     }
-    else if granted {
-        do {
-            let keychainItems = try Keychain.system.loadItems(label: labelOption.value, accessGroup: accessGroupOption.value, service: serviceOption.value, synchronizable: syncOption.value ? true : nil, tokenID: tokenOption.value)
-            
-            Logger.log(important: "Keychain Items Matched: \(keychainItems.count)")
-            
-            for keychainItem in keychainItems {
-                keychainItem.printDetails()
-            }
-        }
-        catch {
-            Logger.log(fatalError: error)
-        }
-    }
-    semaphore.signal()
 }
-semaphore.wait()
+catch {
+    Logger.log(fatalError: error)
+}

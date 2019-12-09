@@ -18,33 +18,43 @@ extension Keychain.Item {
         if let label = self.label {
             Logger.log(info: "Label: \(label)")
         }
+        
         if let applicationLabel = self.applicationLabel {
             Logger.log(info: "Application Label: \(applicationLabel)")
         }
+        
         if let tokenID = self.tokenID {
             Logger.log(info: "Token ID: \(tokenID)")
         }
+        
         if let creationDate = self.creationDate {
             Logger.log(info: "Creation Date: \(creationDate)")
         }
+        
         if let modificationDate = self.modificationDate {
             Logger.log(verbose: "Modification Date: \(modificationDate)")
         }
+        
         if let type = self.type {
             Logger.log(info: "Type: \(type)")
         }
+        
         if let synchronizable = self.synchronizable {
             Logger.log(info: "Synchronizable: \(synchronizable)")
         }
+        
         if let accessGroup = self.accessGroup {
             Logger.log(info: "Access Group: \(accessGroup)")
         }
+        
         if let service = self.service {
             Logger.log(info: "Service: \(service)")
         }
+        
         if let server = self.server {
             Logger.log(info: "Server: \(server)")
         }
+        
         if let account = self.account {
             Logger.log(info: "Account: \(account)")
         }

@@ -11,7 +11,6 @@ import FoundationKit
 import LoggerKit
 import CommandLineKit
 import KeychainKit
-import AuthenticationKit
 import CodeSignKit
 
 let syncOption = BoolOption(shortFlag: "s", longFlag: "sync", helpMessage: "Show only synchronizable items.")
@@ -44,10 +43,7 @@ Logger.logLevel = verboseOption.value ? .debug : .info
 do {
     try CodeSign.signMainExecutableOnceAndRun()
     
-    let authenticator = DeviceOwnerAuthenticator()
-    try authenticator.grant()
-    
-    let keychainItems = try Keychain.system.loadItems(
+    let keychainItems = try Keychain.system.getItems(
         label: labelOption.value,
         accessGroup: accessGroupOption.value,
         service: serviceOption.value,

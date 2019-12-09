@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FoundationKit
 
 @available(macOS 10.12.1, *)
 extension Keychain {
@@ -43,8 +44,7 @@ extension Keychain {
         }
         
         var publicKey, privateKey: SecKey?
-        let resultCode = SecKeyGeneratePair(keyPairQuery as CFDictionary, &publicKey, &privateKey)
-        try checkKeychainResult(code: resultCode)
+        try SecKeyGeneratePair(keyPairQuery as CFDictionary, &publicKey, &privateKey).enforce()
         
         guard let privateSecureEnclaveKey = privateKey else {
             throw KeychainError.keychainError(-451)
@@ -64,7 +64,7 @@ extension Keychain {
             kSecAttrAccessGroup: accessGroup,
             kSecAttrLabel: label]
         
-        try removeItem(query: secureEnclaveQuery)
+        try removeItems(query: secureEnclaveQuery)
         
     }
     

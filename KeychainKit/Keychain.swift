@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FoundationKit
 import Security
 
 public class Keychain {
@@ -26,33 +27,25 @@ public class Keychain {
     
     public static var system = Keychain()
     
-    internal func checkKeychainResult(code: OSStatus) throws {
-        guard code == noErr else {
-            throw KeychainError.keychainError(code)
-        }
-    }
-    
-    public func removeItem(query: [CFString: Any]) throws {
-        let resultCode = SecItemDelete(query as CFDictionary)
-        try checkKeychainResult(code: resultCode)
+    public func removeItems(query: [CFString: Any]) throws {
+        try SecItemDelete(query as CFDictionary).enforce()
     }
     
     public func loadItems(query: [CFString: Any]) throws -> [Item] {
         var result: AnyObject?
         
-        let resultCode = withUnsafeMutablePointer(to: &result) {
-            SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))
+        try withUnsafeMutablePointer(to: &result) {
+            try SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0)).enforce()
         }
         
-        try checkKeychainResult(code: resultCode)
         guard let itemsArray = result as? [[String: Any]] else {
-            throw KeychainError.keychainError(-55)
+            throw NSError(description: "Invalid “Security” framework response.")
         }
         
         return itemsArray.map { Item(attributes: $0 as [CFString: Any]) }
     }
     
-    public func loadItems(
+    public func getItems(
         label: String? = nil,
         accessGroup: String? = nil,
         service: String? = nil,
@@ -83,7 +76,7 @@ public class Keychain {
         return items
     }
     
-    internal func queryItems(
+    private func queryItems(
         label: String? = nil,
         accessGroup: String? = nil,
         service: String? = nil,

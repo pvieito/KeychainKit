@@ -18,16 +18,15 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "../FoundationKit"),
-        .package(path: "../CommandLineKit"),
-        .package(path: "../LoggerKit"),
-        .package(path: "../AuthenticationKit"),
-        .package(path: "../CodeSignKit")
+        .package(url: "https://github.com/pvieito/FoundationKit.git", .branch("master")),
+        .package(url: "https://github.com/pvieito/LoggerKit.git", .branch("master")),
+        .package(url: "https://github.com/pvieito/CommandLineKit.git", .branch("master")),
+        .package(url: "https://github.com/pvieito/CodeSignKit.git", .branch("master"))
     ],
     targets: [
         .target(
             name: "KeychainTool",
-            dependencies: ["LoggerKit", "CommandLineKit", "FoundationKit", "KeychainKit", "AuthenticationKit", "CodeSignKit"],
+            dependencies: ["LoggerKit", "CommandLineKit", "FoundationKit", "KeychainKit", "CodeSignKit"],
             path: "KeychainTool"
         ),
         .target(

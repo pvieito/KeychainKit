@@ -9,7 +9,6 @@
 import Foundation
 
 extension Keychain.Item {
-    
     public enum ItemClass: RawRepresentable, CustomStringConvertible {
         case genericPassword
         case internetPassword
@@ -22,7 +21,8 @@ extension Keychain.Item {
             .internetPassword,
             .key,
             .certificate,
-            .identity]
+            .identity
+        ]
         
         public var rawValue: CFString {
             switch self {

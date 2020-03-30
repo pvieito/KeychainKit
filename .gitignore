@@ -2,6 +2,8 @@
 .*
 !.gitignore
 !.gitkeep
+!.github
+!.travis.yml
 
 # Swift
 build/
@@ -23,3 +25,8 @@ Package.resolved
 # Extra Directories
 /Assets
 /Extra
+
+# Xcode
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout

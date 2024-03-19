@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.9
 
 import PackageDescription
 
@@ -18,13 +18,13 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "git@github.com:pvieito/FoundationKit.git", .branch("master")),
-        .package(url: "git@github.com:pvieito/LoggerKit.git", .branch("master")),
-        .package(url: "git@github.com:pvieito/CodeSignKit.git", .branch("master")),
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
+        .package(url: "git@github.com:pvieito/FoundationKit.git", branch: "master"),
+        .package(url: "git@github.com:pvieito/LoggerKit.git",  branch: "master"),
+        .package(url: "git@github.com:pvieito/CodeSignKit.git",  branch: "master"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "KeychainTool",
             dependencies: ["LoggerKit", "FoundationKit", "KeychainKit", "CodeSignKit", .product(name: "ArgumentParser", package: "swift-argument-parser")],
             path: "KeychainTool"

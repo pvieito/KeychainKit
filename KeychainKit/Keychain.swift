@@ -28,14 +28,14 @@ public class Keychain {
     public static var system = Keychain()
     
     public func removeItems(query: [CFString: Any]) throws {
-        try SecItemDelete(query as CFDictionary).enforce()
+        try SecItemDelete(query as CFDictionary).enforceOSStatus()
     }
     
     public func loadItems(query: [CFString: Any]) throws -> [Item] {
         var result: AnyObject?
         
         try withUnsafeMutablePointer(to: &result) {
-            try SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0)).enforce()
+            try SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0)).enforceOSStatus()
         }
         
         guard let itemsArray = result as? [[String: Any]] else {

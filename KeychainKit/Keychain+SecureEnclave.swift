@@ -44,7 +44,7 @@ extension Keychain {
         }
         
         var publicKey, privateKey: SecKey?
-        try SecKeyGeneratePair(keyPairQuery as CFDictionary, &publicKey, &privateKey).enforce()
+        try SecKeyGeneratePair(keyPairQuery as CFDictionary, &publicKey, &privateKey).enforceOSStatus()
         
         guard let privateSecureEnclaveKey = privateKey else {
             throw KeychainError.keychainError(-451)

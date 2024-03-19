@@ -13,13 +13,14 @@ import ArgumentParser
 import KeychainKit
 import CodeSignKit
 
+@main
 struct KeychainTool: ParsableCommand {
     static var configuration: CommandConfiguration {
         return CommandConfiguration(commandName: String(describing: Self.self))
     }
     
     @Flag(name: .shortAndLong, help: "Show only synchronizable items.")
-    var synchronizable: Bool
+    var synchronizable: Bool = false
 
     @Option(name: .shortAndLong, help: "Label.")
     var label: String?
@@ -34,7 +35,7 @@ struct KeychainTool: ParsableCommand {
     var tokenIdentifier: String?
 
     @Flag(name: .shortAndLong, help: "Verbose mode.")
-    var verbose: Bool
+    var verbose: Bool = false
 
     func run() throws {
         do {
@@ -61,5 +62,3 @@ struct KeychainTool: ParsableCommand {
         }
     }
 }
-
-KeychainTool.main()

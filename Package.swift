@@ -1,11 +1,11 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.2
 
 import PackageDescription
 
 let package = Package(
     name: "KeychainKit",
     platforms: [
-        .macOS(.v10_15)
+        .macOS(.v26),
     ],
     products: [
         .executable(
@@ -26,13 +26,23 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "KeychainTool",
-            dependencies: ["LoggerKit", "FoundationKit", "KeychainKit", "CodeSignKit", .product(name: "ArgumentParser", package: "swift-argument-parser")],
+            dependencies: [
+                "LoggerKit",
+                "FoundationKit",
+                "KeychainKit",
+                "CodeSignKit",
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ],
             path: "KeychainTool"
         ),
         .target(
             name: "KeychainKit",
-            dependencies: ["FoundationKit", "LoggerKit"],
+            dependencies: [
+                "FoundationKit",
+                "LoggerKit",
+            ],
             path: "KeychainKit"
         )
-    ]
+    ],
+    swiftLanguageModes: [.v5]
 )
